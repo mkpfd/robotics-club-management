@@ -4,12 +4,6 @@ import com.roboticsclub.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-/**
- * NOTE: Skeleton controller for the User & Role Management module.
- * Member 2 owns this module and should add routes here (GET /users,
- * GET /users/new, POST /users/save, GET /users/edit/{id}, GET /users/delete/{id}),
- * following the same pattern used in MemberController.
- */
 @Controller
 public class UserController {
 

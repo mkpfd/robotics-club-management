@@ -4,12 +4,6 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
-/**
- * Represents a login account (ADMIN, MENTOR or STUDENT).
- * NOTE: This is a skeleton entity for the User & Role Management module.
- * Member 2 owns this module and will build the full UserService/UserController
- * on top of this to replace the temporary in-memory login in SecurityConfig.
- */
 @Entity
 @Table(name = "users")
 public class User {

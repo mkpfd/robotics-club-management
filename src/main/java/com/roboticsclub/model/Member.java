@@ -8,10 +8,6 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-/**
- * Represents a robotics club member (student).
- * This is the main entity for the Membership Management module (Member 1).
- */
 @Entity
 @Table(name = "members")
 public class Member {

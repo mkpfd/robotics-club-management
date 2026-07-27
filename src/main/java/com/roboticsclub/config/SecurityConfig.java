@@ -10,16 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-/**
- * Basic Spring Security setup.
- *
- * NOTE FOR MEMBER 2:
- * This currently uses a temporary IN-MEMORY admin account (see userDetailsService below)
- * just so the rest of the group has a working login while building their modules.
- * Member 2 should replace this with a real UserDetailsService backed by the
- * "users" / "roles" tables (see User.java, Role.java, UserRepository.java) and
- * remove the in-memory account once database login is ready.
- */
 @Configuration
 public class SecurityConfig {
 
