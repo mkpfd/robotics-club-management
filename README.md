@@ -1,8 +1,6 @@
 # Robotics Club Management System
 
-A simple web application for managing a university robotics club: members, users/roles,
-equipment, equipment requests, projects, events and attendance. Built as a 3rd-year
-university group mini project.
+A simple web application for managing a university robotics club. members, users/roles,equipment, equipment requests, projects, events and attendance. Built as a IT - 3003 3rd year university group mini project.
 
 ## Technologies
 
@@ -20,46 +18,14 @@ university group mini project.
 
 | Member | Module |
 |--------|--------|
-| Member 1 | Membership Management |
-| Member 2 | User & Role Management |
-| Member 3 | Inventory Management (Equipment) |
-| Member 4 | Equipment Request Management |
-| Member 5 | Project Management |
-| Member 6 | Event Management |
-| Member 7 | Attendance Management |
+| Kaveesh | Membership Management |
+| sakindu | User & Role Management |
+| sandaka | Inventory Management (Equipment) |
+| dulan | Equipment Request Management |
+| athukorala | Project Management |
+| pasindu | Event Management |
+| athintha | Attendance Management |
 
-See [GROUP_HANDOVER.md](GROUP_HANDOVER.md) for full handover details and per-member tasks.
-
-## Folder Structure
-
-```
-robotic-club-ms/
-├── .gitignore
-├── pom.xml
-├── mvnw, mvnw.cmd, .mvn/           # Maven wrapper (no local Maven install needed)
-├── README.md
-├── GROUP_HANDOVER.md
-│
-├── database/
-│   └── robotics_club.sql          # Full database schema + sample data
-│
-└── src/
-    ├── main/
-    │   ├── java/com/roboticsclub/
-    │   │   ├── RoboticsClubApplication.java
-    │   │   ├── controller/        # MemberController, LoginController, UserController...
-    │   │   ├── service/           # MemberService, UserService...
-    │   │   ├── repository/        # MemberRepository, RoleRepository, UserRepository...
-    │   │   ├── model/             # Member, Role, User...
-    │   │   └── config/            # SecurityConfig
-    │   └── resources/
-    │       ├── application.properties
-    │       ├── templates/         # Thymeleaf views (login, dashboard, members/...)
-    │       └── static/            # css/, js/
-    └── test/
-        ├── java/com/roboticsclub/MemberCrudTests.java
-        └── resources/application.properties   # test-only H2 config
-```
 
 ## How to Install
 
@@ -81,8 +47,7 @@ robotic-club-ms/
 
 ## How to Configure `application.properties`
 
-Edit `src/main/resources/application.properties` and update the username/password
-to match your local MySQL setup:
+Edit `src/main/resources/application.properties` and update the username/password to match your local MySQL setup:
 
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/robotics_club?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true
@@ -90,7 +55,6 @@ spring.datasource.username=root
 spring.datasource.password=root
 ```
 
-**Never commit your real database password.** Keep local-only credentials out of Git
 (see the Git Workflow section below).
 
 ## How to Run
@@ -108,28 +72,9 @@ The app starts on **http://localhost:8080**.
 
 ## Initial Login
 
-A temporary in-memory account is configured in `SecurityConfig.java` so the group can
-log in before Member 2 finishes database-based authentication:
+A temporary in memory account is configured in `SecurityConfig.java` so the group can log in using:
 
 - **Username:** `admin`
 - **Password:** `admin123`
 
-Member 2 will replace this with real database login backed by the `users` / `roles`
-tables.
-
-## Module Responsibilities
-
-- **Member 1 (done in this initial setup):** Membership Management — full CRUD for
-  club members (`Member`, `MemberRepository`, `MemberService`, `MemberController`,
-  `templates/members/*`).
-- **Members 2–7:** Own their respective modules as listed above. See
-  [GROUP_HANDOVER.md](GROUP_HANDOVER.md) for exactly what each member needs to build.
-
-## Git Workflow
-
-- `main` — stable, shared branch.
-- Each member works on their own branch (e.g. `member2-users`, `member3-equipment`, ...).
-- Pull the latest `main` before starting work.
-- Only modify files inside your own module (controller/service/repository/model/templates).
-- Commit often with clear messages, push your branch, and open a Pull Request into `main`.
-- Full branch naming convention and rules are in [GROUP_HANDOVER.md](GROUP_HANDOVER.md).
+sakindu will replace this with real database login backed by the `users` / `roles` tables.
