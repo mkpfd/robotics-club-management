@@ -1,0 +1,17 @@
+/* Simple custom styling on top of Bootstrap */
+
+body {
+    background-color: #f5f6fa;
+}
+
+.login-page {
+    background-color: #212529;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.card-title {
+    font-weight: 600;
+}
