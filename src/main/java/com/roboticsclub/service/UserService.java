@@ -46,11 +46,22 @@ public class UserService {
 
         // Encrypt password for new users
         if(user.getId() == null){
-            user.setPassword(
-                    passwordEncoder.encode(user.getPassword())
-            );
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            return userRepository.save(user);
         }
-        return userRepository.save(user);
+
+        // Existing user
+        User existingUser = getUserById(user.getId());
+
+        existingUser.setUsername(user.getUsername());
+        existingUser.setRole(user.getRole());
+        existingUser.setMember(user.getMember());
+
+        // Only change password if a new one was entered
+        if (user.getPassword() != null && !user.getPassword().isBlank()) {
+            existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+        return userRepository.save(existingUser);
     }
 
     public void deleteUser(Long id){
