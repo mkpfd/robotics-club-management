@@ -19,6 +19,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/css/**", "/js/**").permitAll()
+                        .requestMatchers("/403").permitAll()
                         .requestMatchers("/users/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
@@ -31,6 +32,9 @@ public class SecurityConfig {
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout")
                         .permitAll()
+                )
+                .exceptionHandling(exception ->
+                        exception.accessDeniedPage("/403")
                 );
 
         return http.build();

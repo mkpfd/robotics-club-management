@@ -9,7 +9,9 @@
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
                 <li class="nav-item"><a class="nav-link" href="/members">Members</a></li>
-                <li class="nav-item"><a class="nav-link" href="/users">Users</a></li>
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                    <a class="nav-link" href="/users">Users</a>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="/equipment">Equipment</a></li>
                 <li class="nav-item"><a class="nav-link" href="/requests">Requests</a></li>
                 <li class="nav-item"><a class="nav-link" href="/projects">Projects</a></li>
