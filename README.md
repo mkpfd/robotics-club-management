@@ -70,11 +70,14 @@ Or run `RoboticsClubApplication.java` directly from IntelliJ IDEA.
 
 The app starts on **http://localhost:8080**.
 
-## Initial Login
+### Initial Login
 
-A temporary in memory account is configured in `SecurityConfig.java` so the group can log in using:
+Database-based authentication is implemented using the `users` and `roles` tables.
+
+An initial admin account is available for testing:
 
 - **Username:** `admin`
 - **Password:** `admin123`
+- **Role:** `ADMIN`
 
-sakindu will replace this with real database login backed by the `users` / `roles` tables.
+Passwords are securely stored using BCrypt encryption, and user access is controlled through role-based authorization.

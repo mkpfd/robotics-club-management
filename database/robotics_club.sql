@@ -156,3 +156,7 @@ INSERT INTO equipment (name, category, quantity, available_quantity, description
 ('Arduino Uno', 'Microcontroller', 20, 15, 'Arduino Uno R3 boards', 'Robotics Lab Shelf A'),
 ('Servo Motor SG90', 'Actuator', 30, 25, 'Small 9g servo motors', 'Robotics Lab Shelf B'),
 ('Soldering Iron', 'Tool', 10, 8, '60W soldering iron', 'Robotics Lab Tool Box');
+
+-- Sample users
+INSERT INTO users (id, username, password, role_id, member_id) VALUES
+('admin', '$2a$10$Vl0mtMx7iVg.8r0BsqtA7ubmyO9gV9dTh1Qd0drhqrgXVF8mEUA/K','1', NULL);
