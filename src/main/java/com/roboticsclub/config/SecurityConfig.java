@@ -18,9 +18,37 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(org.springframework.security.config.annotation.web.builders.HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/css/**", "/js/**").permitAll()
-                        .requestMatchers("/403").permitAll()
+                        // Public resources
+                        .requestMatchers("/css/**", "/js/**", "/403").permitAll()
+
+                        // User Management (Admin only)
                         .requestMatchers("/users/**").hasRole("ADMIN")
+
+                        // Attendance
+                        .requestMatchers("/attendance/**")
+                        .hasAnyRole("ADMIN", "MENTOR")
+
+                        // Member Management
+                        .requestMatchers("/members/**")
+                        .hasAnyRole("ADMIN", "MENTOR")
+
+                        // Projects
+                        .requestMatchers("/projects/**")
+                        .hasAnyRole("ADMIN", "MENTOR", "STUDENT")
+
+                        // Events
+                        .requestMatchers("/events/**")
+                        .hasAnyRole("ADMIN", "MENTOR", "STUDENT")
+
+                        // Equipment
+                        .requestMatchers("/equipment/**")
+                        .hasAnyRole("ADMIN", "MENTOR")
+
+                        // Dashboard
+                        .requestMatchers("/dashboard")
+                        .hasAnyRole("ADMIN", "MENTOR", "STUDENT")
+
+                        // Everything else requires login
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
