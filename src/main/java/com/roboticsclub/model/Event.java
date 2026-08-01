@@ -1,12 +1,15 @@
 package com.roboticsclub.model;
 
 import jakarta.persistence.*;
+<<<<<<< HEAD
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+=======
+>>>>>>> origin/main
 
 @Entity
 @Table(name = "events")
@@ -16,6 +19,7 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+<<<<<<< HEAD
     @NotBlank(message = "Event name is required")
     @Column(name = "event_name", nullable = false, length = 100)
     private String eventName;
@@ -51,6 +55,14 @@ public class Event {
 
     // ===== Getters and Setters =====
 
+=======
+    @Column(name = "event_name")
+    private String eventName;
+
+    public Event() {
+    }
+
+>>>>>>> origin/main
     public Long getId() {
         return id;
     }
@@ -66,6 +78,7 @@ public class Event {
     public void setEventName(String eventName) {
         this.eventName = eventName;
     }
+<<<<<<< HEAD
 
     public String getDescription() {
         return description;
@@ -115,3 +128,6 @@ public class Event {
         this.createdAt = createdAt;
     }
 }
+=======
+}
+>>>>>>> origin/main
