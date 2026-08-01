@@ -1,5 +1,11 @@
 package com.roboticsclub.controller;
 
+import com.roboticsclub.model.Attendance;
+import com.roboticsclub.service.AttendanceService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
 @Controller
 @RequestMapping("/attendance")
 public class AttendanceController {
