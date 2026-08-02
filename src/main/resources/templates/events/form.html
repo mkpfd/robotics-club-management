@@ -36,7 +36,11 @@
 
         <div class="col-md-6">
             <label class="form-label">Event Date</label>
-            <input type="date" class="form-control" th:field="*{eventDate}"/>
+            <input type="date"
+                   class="form-control"
+                   id="eventDate"
+                   name="eventDate"
+                   th:value="${#temporals.format(event.eventDate, 'yyyy-MM-dd')}">
             <div class="text-danger small" th:if="${#fields.hasErrors('eventDate')}" th:errors="*{eventDate}"></div>
         </div>
 
