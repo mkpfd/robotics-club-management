@@ -35,20 +35,35 @@
             <label class="form-label">
                 Event
             </label>
-            <!-- Temporary until Event module is ready -->
-            <input type="text"
-                   class="form-control"
-                   placeholder="Event selection will be added">
+            <select class="form-select"
+                    th:field="*{event}"
+                    id="eventSelect"
+                    onchange="updateAttendanceDate()">
+                <option value="">
+                    Select Event
+                </option>
+                <option th:each="event : ${events}"
+                        th:value="${event.id}"
+                        th:text="${event.eventName}"
+                        th:data-date="${event.eventDate}">
+                </option>
+            </select>
         </div>
 
         <div class="col-md-6">
             <label class="form-label">
                 Member
             </label>
-            <!-- Temporary until dropdown connection -->
-            <input type="text"
-                   class="form-control"
-                   placeholder="Member selection will be added">
+            <select class="form-select"
+                    th:field="*{member}">
+                <option value="">
+                    Select Member
+                </option>
+                <option th:each="member : ${members}"
+                        th:value="${member.id}"
+                        th:text="${member.name}">
+                </option>
+            </select>
         </div>
 
         <div class="col-md-6">
@@ -57,7 +72,9 @@
             </label>
             <input type="date"
                    class="form-control"
-                   th:field="*{attendanceDate}">
+                   th:field="*{attendanceDate}"
+                   id="attendanceDate"
+                   readonly>
         </div>
 
         <div class="col-md-6">
@@ -88,7 +105,8 @@
     </form>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"/>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
 
 </body>
 
