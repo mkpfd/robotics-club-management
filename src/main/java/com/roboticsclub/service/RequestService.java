@@ -27,6 +27,10 @@ public class RequestService {
         return requestRepo.findAll();
     }
 
+    public long getPendingRequestCount() {
+        return requestRepo.countByStatus("PENDING");
+    }
+
     public Optional<EquipmentRequest> getRequestById(Long id) {
         return requestRepo.findById(id);
     }
