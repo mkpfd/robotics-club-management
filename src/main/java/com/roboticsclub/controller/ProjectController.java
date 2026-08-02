@@ -3,12 +3,13 @@ package com.roboticsclub.controller;
 import com.roboticsclub.model.Project;
 import com.roboticsclub.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/projects")
 public class ProjectController {
 
@@ -28,6 +29,13 @@ public class ProjectController {
     @GetMapping("/new")
     public String form(Model model) {
         model.addAttribute("project", new Project());
+        return "projects/form";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editProject(@PathVariable Long id, Model model) {
+        Project project = projectService.getProjectById(id);
+        model.addAttribute("project", project);
         return "projects/form";
     }
 

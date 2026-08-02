@@ -67,7 +67,8 @@ public class EventController {
 
     @GetMapping("/edit/{id}")
     public String editEventForm(@PathVariable Long id, Model model) {
-        model.addAttribute("event", eventService.getEventById(id));
+        Event event = eventService.getEventById(id);
+        model.addAttribute("event", event);
         return "events/form";
     }
 
