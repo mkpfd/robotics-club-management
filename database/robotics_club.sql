@@ -158,5 +158,5 @@ INSERT INTO equipment (name, category, quantity, available_quantity, description
 ('Soldering Iron', 'Tool', 10, 8, '60W soldering iron', 'Robotics Lab Tool Box');
 
 -- Sample users
-INSERT INTO users (id, username, password, role_id, member_id) VALUES
+INSERT INTO users (username, password, role_id, member_id) VALUES
 ('admin', '$2a$10$Vl0mtMx7iVg.8r0BsqtA7ubmyO9gV9dTh1Qd0drhqrgXVF8mEUA/K','1', NULL);
