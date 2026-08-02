@@ -23,3 +23,30 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+
+function validateAvailableQuantity() {
+
+    const quantity = document.getElementById("quantity");
+    const available = document.getElementById("availableQuantity");
+
+    if (!quantity || !available) return;
+
+    const total = parseInt(quantity.value) || 0;
+    const availableQty = parseInt(available.value) || 0;
+
+    if (availableQty > total) {
+        alert("Available quantity cannot be greater than total quantity.");
+        available.value = total;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const quantity = document.getElementById("quantity");
+    const available = document.getElementById("availableQuantity");
+
+    if (quantity && available) {
+        quantity.addEventListener("input", validateAvailableQuantity);
+        available.addEventListener("input", validateAvailableQuantity);
+    }
+});
