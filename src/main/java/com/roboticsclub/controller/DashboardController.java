@@ -1,5 +1,6 @@
 package com.roboticsclub.controller;
 
+import com.roboticsclub.repository.EquipmentRepository;
 import com.roboticsclub.repository.MemberRepository;
 import com.roboticsclub.repository.ProjectRepository;
 import com.roboticsclub.repository.EventRepository;
@@ -15,7 +16,7 @@ import java.time.LocalDate;
 public class DashboardController {
 
     private final MemberRepository memberRepository;
-//    private final EquipmentRepository equipmentRepository;
+    private final EquipmentRepository equipmentRepository;
     private final ProjectRepository projectRepository;
     private final EventRepository eventRepository;
 //    private final RequestRepository requestRepository;
@@ -23,13 +24,13 @@ public class DashboardController {
 
     public DashboardController(
             MemberRepository memberRepository,
-            /*EquipmentRepository equipmentRepository,*/
+            EquipmentRepository equipmentRepository,
             ProjectRepository projectRepository,
             EventRepository eventRepository/*,
             RequestRepository requestRepository*/) {
 
         this.memberRepository = memberRepository;
-//        this.equipmentRepository = equipmentRepository;
+        this.equipmentRepository = equipmentRepository;
         this.projectRepository = projectRepository;
         this.eventRepository = eventRepository;
 //        this.requestRepository = requestRepository;
@@ -39,7 +40,7 @@ public class DashboardController {
     public String dashboard(Model model) {
 
         model.addAttribute("memberCount", memberRepository.count());
-//        model.addAttribute("equipmentCount", equipmentRepository.count());
+        model.addAttribute("equipmentCount", equipmentRepository.count());
         model.addAttribute("projectCount", projectRepository.count());
         model.addAttribute("eventCount", eventRepository.countByEventDateGreaterThanEqual(LocalDate.now()));
 //        model.addAttribute("requestCount", requestRepository.count());
