@@ -27,7 +27,7 @@
             <th>Qty</th>
             <th>Reason</th>
             <th>Status</th>
-            <th>Actions</th>
+            <th sec:authorize="hasAnyRole('ADMIN','MENTOR')">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -46,7 +46,7 @@
                             th:text="${r.status}">
                 </span>
             </td>
-            <td>
+            <td sec:authorize="hasAnyRole('ADMIN','MENTOR')">
                 <form th:if="${r.status == 'PENDING'}" th:action="@{/requests/{id}/approve(id=${r.id})}" method="post" class="d-inline">
                     <button class="btn btn-sm btn-success">Approve</button>
                 </form>

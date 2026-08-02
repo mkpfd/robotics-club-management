@@ -1,9 +1,6 @@
 package com.roboticsclub.controller;
 
-import com.roboticsclub.repository.EquipmentRepository;
-import com.roboticsclub.repository.MemberRepository;
-import com.roboticsclub.repository.ProjectRepository;
-import com.roboticsclub.repository.EventRepository;
+import com.roboticsclub.repository.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,21 +16,21 @@ public class DashboardController {
     private final EquipmentRepository equipmentRepository;
     private final ProjectRepository projectRepository;
     private final EventRepository eventRepository;
-//    private final RequestRepository requestRepository;
+    private final EquipmentRequestRepository requestRepository;
 
 
     public DashboardController(
             MemberRepository memberRepository,
             EquipmentRepository equipmentRepository,
             ProjectRepository projectRepository,
-            EventRepository eventRepository/*,
-            RequestRepository requestRepository*/) {
+            EventRepository eventRepository,
+            EquipmentRequestRepository requestRepository) {
 
         this.memberRepository = memberRepository;
         this.equipmentRepository = equipmentRepository;
         this.projectRepository = projectRepository;
         this.eventRepository = eventRepository;
-//        this.requestRepository = requestRepository;
+        this.requestRepository = requestRepository;
     }
 
     @GetMapping("/dashboard")
@@ -43,7 +40,7 @@ public class DashboardController {
         model.addAttribute("equipmentCount", equipmentRepository.count());
         model.addAttribute("projectCount", projectRepository.count());
         model.addAttribute("eventCount", eventRepository.countByEventDateGreaterThanEqual(LocalDate.now()));
-//        model.addAttribute("requestCount", requestRepository.count());
+        model.addAttribute("requestCount", requestRepository.count());
         return "dashboard";
     }
 }
