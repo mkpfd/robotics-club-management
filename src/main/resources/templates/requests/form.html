@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>New Equipment Request</title></head>
+<body>
+<h1>New Equipment Request</h1>
+<form th:action="@{/requests}" th:object="${request}" method="post">
+    Member ID: <input type="number" th:field="*{memberId}"/><br/><br/>
+    Equipment ID: <input type="number" th:field="*{equipmentId}"/><br/><br/>
+    Quantity: <input type="number" th:field="*{quantity}"/><br/><br/>
+    Reason: <input type="text" th:field="*{reason}"/><br/><br/>
+    <button type="submit">Submit Request</button>
+</form>
+</body>
+</html>

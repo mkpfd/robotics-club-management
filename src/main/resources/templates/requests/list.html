@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Equipment Requests</title></head>
+<body>
+<h1>Equipment Requests</h1>
+<a th:href="@{/requests/new}">+ New Request</a>
+
+<table border="1" cellpadding="6">
+    <tr>
+        <th>ID</th><th>Member</th><th>Equipment</th><th>Qty</th>
+        <th>Reason</th><th>Status</th><th>Actions</th>
+    </tr>
+    <tr th:each="r : ${requests}">
+        <td th:text="${r.id}"></td>
+        <td th:text="${r.memberId}"></td>
+        <td th:text="${r.equipmentId}"></td>
+        <td th:text="${r.quantity}"></td>
+        <td th:text="${r.reason}"></td>
+        <td th:text="${r.status}"></td>
+        <td>
+            <form th:if="${r.status == 'PENDING'}" th:action="@{/requests/{id}/approve(id=${r.id})}" method="post" style="display:inline">
+                <button type="submit">Approve</button>
+            </form>
+            <form th:if="${r.status == 'PENDING'}" th:action="@{/requests/{id}/reject(id=${r.id})}" method="post" style="display:inline">
+                <button type="submit">Reject</button>
+            </form>
+            <form th:if="${r.status == 'APPROVED'}" th:action="@{/requests/{id}/handover(id=${r.id})}" method="post" style="display:inline">
+                <button type="submit">Hand Over</button>
+            </form>
+            <form th:if="${r.status == 'HANDED_OVER'}" th:action="@{/requests/{id}/return(id=${r.id})}" method="post" style="display:inline">
+                <button type="submit">Return</button>
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
