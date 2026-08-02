@@ -40,7 +40,7 @@ public class DashboardController {
         model.addAttribute("equipmentCount", equipmentRepository.count());
         model.addAttribute("projectCount", projectRepository.count());
         model.addAttribute("eventCount", eventRepository.countByEventDateGreaterThanEqual(LocalDate.now()));
-        model.addAttribute("requestCount", requestRepository.count());
+        model.addAttribute("requestCount", requestRepository.countByStatus("PENDING"));
         return "dashboard";
     }
 }
