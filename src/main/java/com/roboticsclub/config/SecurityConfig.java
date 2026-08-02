@@ -2,27 +2,12 @@ package com.roboticsclub.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
-
-    @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(passwordEncoder.encode("admin123"))
-                .roles("ADMIN")
-                .build();
-
-        return new InMemoryUserDetailsManager(admin);
-    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -33,8 +18,41 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(org.springframework.security.config.annotation.web.builders.HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/css/**", "/js/**").permitAll()
-                        .requestMatchers("/login").permitAll()
+                        // Public resources
+                        .requestMatchers("/css/**", "/js/**", "/403").permitAll()
+
+                        // User Management (Admin only)
+                        .requestMatchers("/users/**").hasRole("ADMIN")
+
+                        // Attendance
+                        .requestMatchers("/attendance/**")
+                        .hasAnyRole("ADMIN", "MENTOR")
+
+                        // Member Management
+                        .requestMatchers("/members/**")
+                        .hasAnyRole("ADMIN", "MENTOR")
+
+                        // Projects
+                        .requestMatchers("/projects/**")
+                        .authenticated()
+                        .requestMatchers("/projects/edit/**", "/projects/update")
+                        .hasAnyRole("ADMIN","MENTOR")
+
+                        // Events
+                        .requestMatchers("/events/**")
+                        .authenticated()
+                        .requestMatchers("/events/edit/**", "/events/update")
+                        .hasAnyRole("ADMIN","MENTOR")
+
+                        // Equipment
+                        .requestMatchers("/equipment/**")
+                        .hasAnyRole("ADMIN", "MENTOR")
+
+                        // Dashboard
+                        .requestMatchers("/dashboard")
+                        .authenticated()
+
+                        // Everything else requires login
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -46,6 +64,9 @@ public class SecurityConfig {
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout")
                         .permitAll()
+                )
+                .exceptionHandling(exception ->
+                        exception.accessDeniedPage("/403")
                 );
 
         return http.build();

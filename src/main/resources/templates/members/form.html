@@ -52,7 +52,13 @@
 
         <div class="col-md-6">
             <label class="form-label">Join Date</label>
-            <input type="date" class="form-control" th:field="*{joinDate}"/>
+            <input type="date"
+                   id="joinDate"
+                   name="joinDate"
+                   class="form-control"
+                   th:value="${member.joinDate != null
+           ? #temporals.format(member.joinDate, 'yyyy-MM-dd')
+           : ''}"/>
             <div class="text-danger small" th:if="${#fields.hasErrors('joinDate')}" th:errors="*{joinDate}"></div>
         </div>
 
