@@ -34,11 +34,15 @@ public class SecurityConfig {
 
                         // Projects
                         .requestMatchers("/projects/**")
-                        .hasAnyRole("ADMIN", "MENTOR", "STUDENT")
+                        .authenticated()
+                        .requestMatchers("/projects/edit/**", "/projects/update")
+                        .hasAnyRole("ADMIN","MENTOR")
 
                         // Events
                         .requestMatchers("/events/**")
-                        .hasAnyRole("ADMIN", "MENTOR", "STUDENT")
+                        .authenticated()
+                        .requestMatchers("/events/edit/**", "/events/update")
+                        .hasAnyRole("ADMIN","MENTOR")
 
                         // Equipment
                         .requestMatchers("/equipment/**")
@@ -46,7 +50,7 @@ public class SecurityConfig {
 
                         // Dashboard
                         .requestMatchers("/dashboard")
-                        .hasAnyRole("ADMIN", "MENTOR", "STUDENT")
+                        .authenticated()
 
                         // Everything else requires login
                         .anyRequest().authenticated()

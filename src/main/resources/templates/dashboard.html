@@ -14,20 +14,21 @@
     <p class="text-muted">Welcome! Use the navigation bar above to manage the club.</p>
 
     <div class="row g-3 mt-3">
-        <div class="col-md-4 col-lg-3">
+        <div class="col-md-4 col-lg-3" sec:authorize="hasAnyRole('ADMIN','MENTOR')">
             <div class="card text-center shadow-sm">
-                <div class="card-body">
+                <div class="card-body" >
                     <h5 class="card-title">Members</h5>
-                    <p class="display-6">--</p>
+                    <p class="display-6" th:text="${memberCount}">0</p>
                     <a href="/members" class="btn btn-sm btn-primary">View Members</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 col-lg-3">
+        <div class="col-md-4 col-lg-3" sec:authorize="hasAnyRole('ADMIN','MENTOR')">
             <div class="card text-center shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Equipment</h5>
                     <p class="display-6">--</p>
+<!--                    <p class="display-6" th:text="${equipmentCount}">0</p>-->
                     <a href="/equipment" class="btn btn-sm btn-primary">View Equipment</a>
                 </div>
             </div>
@@ -36,7 +37,7 @@
             <div class="card text-center shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Projects</h5>
-                    <p class="display-6">--</p>
+                    <p class="display-6" th:text="${projectCount}">0</p>
                     <a href="/projects" class="btn btn-sm btn-primary">View Projects</a>
                 </div>
             </div>
@@ -45,16 +46,17 @@
             <div class="card text-center shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Upcoming Events</h5>
-                    <p class="display-6">--</p>
+                    <p class="display-6" th:text="${eventCount}">0</p>
                     <a href="/events" class="btn btn-sm btn-primary">View Events</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 col-lg-3">
+        <div class="col-md-4 col-lg-3" sec:authorize="hasAnyRole('ADMIN','MENTOR')">
             <div class="card text-center shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Pending Requests</h5>
                     <p class="display-6">--</p>
+<!--                    <p class="display-6" th:text="${requestCount}">0</p>-->
                     <a href="/requests" class="btn btn-sm btn-primary">View Requests</a>
                 </div>
             </div>
