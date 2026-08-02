@@ -1,8 +1,8 @@
 package com.roboticsclub.service;
 
-import com.roboticsclub.model.Equipment;                   
+import com.roboticsclub.model.Equipment;
 import com.roboticsclub.model.EquipmentRequest;
-import com.roboticsclub.repository.EquipmentRepository;    
+import com.roboticsclub.repository.EquipmentRepository;
 import com.roboticsclub.repository.EquipmentRequestRepository;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +41,7 @@ public class RequestService {
 
     // ----- STEP 2: Admin approves (checks stock, but does NOT deduct yet) -----
 
-    public EquipmentRequest approveRequest(Long requestId, Long adminUserId) {
+    public EquipmentRequest approveRequest(Long requestId) {
         EquipmentRequest request = requestRepo.findById(requestId)
                 .orElseThrow(() -> new RuntimeException("Request not found"));
 
@@ -57,13 +57,12 @@ public class RequestService {
         }
 
         request.setStatus("APPROVED");
-        request.setApprovedBy(adminUserId);
         return requestRepo.save(request);
     }
 
     // ----- Admin rejects -----
 
-    public EquipmentRequest rejectRequest(Long requestId, Long adminUserId) {
+    public EquipmentRequest rejectRequest(Long requestId) {
         EquipmentRequest request = requestRepo.findById(requestId)
                 .orElseThrow(() -> new RuntimeException("Request not found"));
 
@@ -72,7 +71,6 @@ public class RequestService {
         }
 
         request.setStatus("REJECTED");
-        request.setApprovedBy(adminUserId);
         return requestRepo.save(request);
     }
 

@@ -39,15 +39,13 @@ public class RequestController {
 
     @PostMapping("/{id}/approve")
     public String approve(@PathVariable Long id) {
-        // TODO: replace 1L with the actual logged-in admin's user ID once
-        // Spring Security integration is confirmed with sakindu's module
-        service.approveRequest(id, 1L);
+        service.approveRequest(id);
         return "redirect:/requests";
     }
 
     @PostMapping("/{id}/reject")
     public String reject(@PathVariable Long id) {
-        service.rejectRequest(id, 1L);
+        service.rejectRequest(id);
         return "redirect:/requests";
     }
 
